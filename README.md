@@ -1,24 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project was create by Anthony as part of a CareerFoundry web development course. Testing GitHub repository commits and version control.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+I'm a software development manager focusing on analytics and information management. This Github Repo will showcase different projects I work on as I program using Ruby on Rails.
