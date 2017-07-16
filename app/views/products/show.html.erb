@@ -1,6 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+ 
+  <%= image_tag(@product.image_url, class: "img-responsive product", height: '350', width: '350') %>
+
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @product.name %>
 </p>
@@ -8,11 +14,6 @@
 <p>
   <strong>Description:</strong>
   <%= @product.description %>
-</p>
-
-<p>
-  <strong>Image url:</strong>
-  <%= @product.image_url %>
 </p>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
