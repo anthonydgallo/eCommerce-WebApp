@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+
 <p>
- 
+  <strong><%= @product.name %></strong>
+</p>
+<p>
   <%= image_tag(@product.image_url, class: "img-responsive product", height: '350', width: '350') %>
-
 </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+
 
 <p>
   <strong>Description:</strong>
