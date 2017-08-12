@@ -11,4 +11,5 @@ class StaticPagesController < ApplicationController
   		@products = Product.all
   	end
   end
+
 end
