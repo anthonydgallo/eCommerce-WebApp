@@ -1,0 +1,51 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2017-07-16 15:17:05.833604'
+    - '2017-07-16 15:17:05.833604'
+
+---
+products:
+  columns:
+  - id
+  - name
+  - description
+  - image_url
+  - created_at
+  - updated_at
+  - color
+  - price
+  records: 
+  - - 1
+    - Electric Commuter Bike
+    - Awesome Electric Commuter bike with built-in rear rack, fenders, integrated
+      front headlight, with speeds up to 20 MPH.
+    - ebike1.jpg
+    - '2017-07-16 15:35:53.518407'
+    - '2017-07-23 17:19:30.592511'
+    - Gray
+    - 1500
+  - - 2
+    - Test Product
+    - Lorem Ipsum
+    - ebike2.jpg
+    - '2017-07-29 18:46:55.477687'
+    - '2017-07-29 22:27:13.179327'
+    - Red
+    - 5000
+  - - 3
+    - Test Scooter
+    - test
+    - ebike5.jpg
+    - '2017-07-30 15:54:35.860899'
+    - '2017-07-30 15:54:35.860899'
+    - black
+    - 999

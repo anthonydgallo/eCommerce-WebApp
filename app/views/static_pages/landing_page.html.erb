@@ -1,19 +1,27 @@
-<h2>Feature Product:</h2>
-<%= @featured_product.name %>
+
+
+<% if @featured_product %>
+  <h2>Feature Product:</h2>
+  <%= @featured_product.name %>
+<% else %>
+  <b>No Products In Database</b><br><br>
+<% end %>
 
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-  <% i=0 %>
-  <% @products.each do |product| %>
-	  <li data-target="#carousel-example-generic" data-slide-to="<% i %>" <%= "class=""active" if product == @products.first %>></li>
-	  <% i += 1 %>
-  <% end %>
+  <% if @products then
+    @products.each_with_index do |product, index| 
+      %>
+	  <li data-target="#carousel-example-generic" data-slide-to="<% index %>" <%= "class=""active" if product == @products.first %>></li>
+  <% end 
+  end %>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <% @products.each do |product| %>
+    <% if @products then
+        @products.each do |product| %>
 	<div class="item<%= " active" if product == @products.first %>">
   <center>
       <%= image_tag(product.image_url) %>
@@ -22,7 +30,8 @@
       </div>
       </center>
     </div>
-    <% end %>
+    <% end 
+    end %>
   </div>
 
   <!-- Controls -->

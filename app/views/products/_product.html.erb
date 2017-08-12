@@ -3,7 +3,7 @@
         image_tag(product.image_url, class: "img-responsive product", height: '250', width: '320')
         end 
        %>
-        <a href="#"><h1><%= product.name %></h1></a>
+        <h1><%= link_to(product.name,"./"+product.id.to_s) %></h1>
         <p><%= product.description %></p>
         <p><Strong>Color: </Strong><%= product.color %>
         <p><strong>Price: </strong>$<%= product.price %></p>
