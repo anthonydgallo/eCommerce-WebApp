@@ -25,6 +25,7 @@
           <span class="icon-bar"></span>
         </button>
       </div>
+
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li class="active"><a href="../">Home</a></li>
@@ -32,9 +33,15 @@
           <li><a href="../about/">About</a></li>
           <li><a href="../contact/">Contact</a></li>
         </ul>
-      </div>
+
+        <%= form_with(url: '/products', method:'get', local:true, class: 'navbar-form navbar-right') do |form| %>
+        <%= form.text_field :q, id: 'q', value: params[:q], class:'form-control' %>
+        <%= form.submit 'Search', class:'btn btn-default' %>
+      <% end %>
     </div>
+          </div>
   </nav>
+
   <%= yield %>
   <footer>
   	&copy; 2017 Anthony Gallo
