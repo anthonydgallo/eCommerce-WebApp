@@ -32,14 +32,25 @@
           <li><a href="../products/">Products</a></li>
           <li><a href="../about/">About</a></li>
           <li><a href="../contact/">Contact</a></li>
-      <%= form_with(url: products_path, method:'get', local:true, class: 'navbar-form navbar-right') do |form| %>
-        <%= form.text_field :q, id: 'q', value: params[:q], class:'form-control' %>
-        <%= form.submit 'Search', class:'btn btn-default' %>
-      <% end %>
-              </ul>
+          <%= form_with(url: products_path, method:'get', local:true, class: 'navbar-form navbar-right') do |form| %>
+          <%= form.text_field :q, id: 'q', value: params[:q], class:'form-control' %>
+          <%= form.submit 'Search', class:'btn btn-default' %>
+        <% end %>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li>
+          <% if user_signed_in? %>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+          <% else %>
+            <%= link_to('Login', new_user_session_path) %>
+          <% end %>
+          </li>
+        </ul>
+      </div>
     </div>
-          </div>
   </nav>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
   <%= yield %>
   <footer>
