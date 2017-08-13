@@ -1,3 +1,27 @@
-<h1>Contact Us</h1>
-<p>If you'd like to get in touch with sales or support for your bike order, reach out to us below at: </p>
-<p>Ordersupport@ebike-emporium.com</p>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h1>Contact Us</h1>
+			<p>If you'd like to get in touch with sales or support for your bike order, reach out to us below at: </p>
+			<%= flash[:notice] %>
+		</div>
+	</div>
+<%= form_with(url: "/static_pages/thank_you", local:true) do |form| %>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<%= form.label :name %>
+				<%= form.text_field :name, class: "form-control", placeholder: "Enter Name" %>
+			</div>
+			<div class="form-group">
+				<%= form.label :email, "Email Address" %>
+				<%= form.text_field :email, class: "form-control", placeholder: "Enter Email" %>
+			</div>
+			<div class="form-group">
+			<%= form.label :message %>
+			<%= form.text_area :messahe, class: "form-control", placeholder: "Enter Message" %>
+			</div>
+		</div>
+	</div>
+	<%= form.submit "Send" %>
+	<% end %>
