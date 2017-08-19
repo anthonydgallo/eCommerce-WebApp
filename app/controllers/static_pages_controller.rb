@@ -9,6 +9,8 @@ class StaticPagesController < ApplicationController
   	if Product.first
   		@featured_product = Product.first
   		@products = Product.all
+    else
+      @products = nil
   	end
   end
 
