@@ -1,26 +1,29 @@
 <p id="notice"><%= notice %></p>
-
-
-<p>
-  <strong><%= @product.name %></strong>
-</p>
-<p>
-  <%= 
-  if (@product.image_url != nil)
-   image_tag(@product.image_url, class: "img-responsive product", height: '350', width: '350') 
-	end
-   %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description %>
-</p>
-<p><strong>Color:</strong>
-  <%= @product.color %>
-</p>
-<p><strong>Price:</strong>
-  <%= @product.price %>
-</p>
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-xs-12 col-sm-8">
+      <h1><%= @product.name %></h1>
+      <p>
+        <%= 
+        if (@product.image_url != nil)
+         image_tag(@product.image_url, class: "img-responsive product", height: '350', width: '350') 
+      	end
+         %>
+      </p>
+      <p><strong>Description:</strong>
+      <%= @product.description %></p>
+      <p><strong>Color:</strong>
+        <%= @product.color %></p>
+      <p><strong>Price:</strong>
+        <%= @product.price %></p>
+      <%= link_to 'Edit', edit_product_path(@product) %> |
+      <%= link_to 'Back', products_path %>
+    </div>
+    <div class="col-sm-1">
+    </div>
+  </div>
+  <div class="row" id="comments-section">
+  </div>
+</div>
