@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-
+  before_action :set_user, only: [:destroy]
+  before_action :authenticate_user!
+  load_and_authorize_resource
 
 	def create
     @product = Product.find(params[:product_id])
@@ -16,14 +18,21 @@ class CommentsController < ApplicationController
     end
   end
 
-	def destroy
-
-	end
-
-private
-
-  def comment_params
-    params.require(:comment).permit(:user_id, :body, :rating)
+  def destroy
+    @comment = Comment.find(params[:id])
+    product = @comment.product
+    @comment.destroy
+    redirect_to product
   end
+
+  private
+    def comment_params
+      params.require(:comment).permit(:user_id, :body, :rating)
+    end
+
+      # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = current_user
+    end
 
 end
