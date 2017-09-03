@@ -4,6 +4,9 @@
         <% end %>
         <h1><%= link_to(product.name,product_path(product)) %></h1>
         <p><%= product.description %></p>
-        <p><Strong>Color: </Strong><%= product.color %>
+        <p><div class="rated" data-score="<%= product.average_rating %>"><strong>Rating: </strong></div></p>
+        <p><strong>Color: </strong><%= product.color %>
         <p><strong>Price: </strong>$<%= product.price %></p>
+        <%= link_to ('<u>More Details</u>').html_safe, product_path(product) %>
+
 </div><!-- /col -->
