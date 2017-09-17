@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe UsersController, type: :controller do 
-	let(:user){ User.create!(email: "Test@test.com", password: "TestPasword123")}
+	let(:user){ FactoryGirl.create(:user) }
 	let(:user2){ User.create!(email: "Test2@test.com", password: "TestPasword123")}
 	
 	describe 'GET #show' do
@@ -17,7 +17,7 @@ describe UsersController, type: :controller do
 				expect(assigns(:user)).to eq user
 			end
 
-			it 'redirects to root_path when accessing  other user page' do
+			it 'redirects to root_path when accessing other user page' do
 				get :show, params: { id: user2.id }
 				expect(response).to redirect_to(root_path)
 			end
@@ -26,7 +26,6 @@ describe UsersController, type: :controller do
 				get :show, params: { id: user2.id }
 				expect(response.response_code).to eq 302
 			end
-
 
 		end
 
@@ -37,9 +36,14 @@ describe UsersController, type: :controller do
 			end
 		end
 
-
-
-
 	end
 
+end
+
+
+describe User, type: :model do
+  it "should not validate users without an email address" do
+    @user = FactoryGirl.build(:user, email: "not_an_email")
+    expect(@user).to_not be_valid
+  end
 end
