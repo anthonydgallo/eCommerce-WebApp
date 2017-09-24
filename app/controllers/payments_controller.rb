@@ -16,7 +16,9 @@ class PaymentsController < ApplicationController
 
 	if charge.paid
 		Order.create(user_id: user, product_id: product, total: @product.price)
-  		redirect_to @product, notice: 'Order was successful.'
+  		redirect_to @product, notice: 'Payment was successful.'
+  	else
+  		redirect_to @product, alert: 'Payment was unsuccessful.'
   	end
 
 	  rescue Stripe::CardError => e
