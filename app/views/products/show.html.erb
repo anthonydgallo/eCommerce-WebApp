@@ -16,7 +16,7 @@
         <%= @product.color %></p>
       <p><strong>Price:</strong>
         <%= @product.price %></p>
-      <%= form_with('/payments/create') do |form| %>
+      <%= form_with(url: '/payments/create') do |form| %>
       <%= render partial: "shared/stripe_checkout_button" %>
       <% end %>
       <% if signed_in? && current_user.admin? %>
