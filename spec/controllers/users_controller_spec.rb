@@ -40,7 +40,6 @@ describe UsersController, type: :controller do
 
 end
 
-
 describe User, type: :model do
   it "should not validate users without an email address" do
     @user = FactoryGirl.build(:user, email: "not_an_email")

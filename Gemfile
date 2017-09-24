@@ -38,6 +38,8 @@ gem 'devise'
 
 gem 'cancancan', '~> 1.10'
 
+gem 'stripe'
+
 group :production do
   gem 'pg'
 end
