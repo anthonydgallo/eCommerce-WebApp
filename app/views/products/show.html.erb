@@ -5,7 +5,7 @@
       <p>
         <%= 
         if (@product.image_url != nil)
-         image_tag(@product.image_url, class: "img-responsive product img-zoom", height: '350', width: '350', data_zoom_images:@product.image_url) 
+         image_tag(@product.image_url, class: "img-responsive product img-zoom", height: '350', width: '350', data_zoom_images:"/assets/"+@product.image_url) 
       	end
          %>
       </p>
@@ -18,7 +18,9 @@
         <%= @product.price %></p>
       <%= form_with(url: '/payments/create') do |form| %>
       <%= hidden_field_tag(:product_id, @product.id) %>
-      <%= hidden_field_tag(:user_id, current_user.id) %>
+      <% if signed_in? && current_user.admin? %>
+        <%= hidden_field_tag(:user_id, current_user.id) %>
+      <% end %>
       <%= render partial: "shared/stripe_checkout_button" %>
       <% end %>
       <% if signed_in? && current_user.admin? %>
