@@ -40,6 +40,8 @@ gem 'cancancan', '~> 1.10'
 
 gem 'stripe'
 
+gem 'byebug'
+
 group :production do
   gem 'pg'
 end
