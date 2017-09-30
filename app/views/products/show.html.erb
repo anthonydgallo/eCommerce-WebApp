@@ -5,7 +5,7 @@
       <p>
         <%= 
         if (@product.image_url != nil)
-         image_tag(@product.image_url, class: "img-responsive product", height: '350', width: '350') 
+         image_tag(@product.image_url, class: "img-responsive product img-zoom", height: '350', width: '350', data_zoom_images:"/assets/"+@product.image_url) 
       	end
          %>
       </p>
