@@ -4,5 +4,5 @@
   data-image="<%@product.image_url%>"
   data-name="<%= @product.name %>"
   data-description="<%= @product.description %>"
-  data-receipt_email="<% if signed_in? current_user.email end %>">
+  data-receipt_email="<% if signed_in? then current_user.email end %>">
 </script>
