@@ -5,9 +5,11 @@
 
 <div class="container-fluid">
   <div class="row">
-    <% if @products.count > 0 
-    	@products.each do |product| %>
-       <%= render product %>
+    <% if @products.count > 0 %>
+		<% cache(cache_key_for_products) do %>
+    		<%  @products.each do |product| %>
+	       		<%= render product %>
+	       	<% end %>
     	<% end %>
     <% else %>
     	<br><b> No Products Found</b> <br>

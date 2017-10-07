@@ -42,6 +42,8 @@ gem 'stripe'
 
 gem 'byebug'
 
+gem 'dalli'
+
 group :production do
   gem 'pg'
 end

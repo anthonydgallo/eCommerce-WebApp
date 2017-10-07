@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-9">
+    <% cache @product do %>
       <h1><%= @product.name %></h1>
       <p>
         <%= 
@@ -16,6 +17,7 @@
         <%= @product.color %></p>
       <p><strong>Price:</strong>
         <%= @product.price %></p>
+      <% end %>
       <%= form_with(url: '/payments/create') do |form| %>
       <%= hidden_field_tag(:product_id, @product.id) %>
       <% if signed_in? %>
