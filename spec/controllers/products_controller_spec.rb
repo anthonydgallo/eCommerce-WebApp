@@ -50,11 +50,9 @@ describe ProductsController, type: :controller do
 		productdetails = FactoryGirl.attributes_for(:product)
 		it 'creates a product' do
 			post :create, params: {product:productdetails}
-			#expect(response).to be_ok
 			expect(response).to redirect_to(Product.last)
 		end
 	end
-	#update
 
 	context 'Post #Update' do
 		before do
@@ -69,7 +67,6 @@ describe ProductsController, type: :controller do
 		end
 	end
 
-	#destroy
 	context 'Post #Destroy' do
 		before do
 			sign_in user
