@@ -3,8 +3,6 @@ require 'rails_helper'
 describe Product do 
 
 	let(:product){ Product.create!(name: "race bike")}
-	
-
 	let(:user){ User.create!(email: "Test@test.com", password: "TestPasword123")}
 
 	before do
@@ -21,4 +19,13 @@ describe Product do
 		expect(Product.new(description: "Nice bike")).not_to be_valid
 	end
 
+	it "returns the comment with the highest rating" do
+		expect(product.highest_rating_comment).to eq product.comments.rating_desc.first
+	end
+
+	it "searches and returns products using name like correctly" do
+		expect(Product.search("bike")).to eq Product.where("name LIKE '%bike%'")
+	end
+
+ # 
 end
