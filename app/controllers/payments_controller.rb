@@ -18,7 +18,7 @@ class PaymentsController < ApplicationController
 	if charge.paid
 		Order.create(user_id: user, product_id: product, total: @product.price)
     	message = "We are eBike Emporium are happy - because we've received your order!"
-    	ProductMailer.order_confirmation(email, User.find(user).first_name, message).deliver_now
+    	ProductMailer.order_confirmation(email, "test", message).deliver_now
   		redirect_to @product, notice: 'Payment was successful.'
   	else
   		redirect_to @product, alert: 'Payment was unsuccessful.'
