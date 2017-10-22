@@ -3,6 +3,7 @@ class PaymentsController < ApplicationController
 	  product = params[:product_id]
 	  token = params[:stripeToken]
 	  user = params[:user_id]
+	  email = params[:user_email]
 
 	  @product = Product.find(params[:product_id])
 	  # Create the charge on Stripe's servers - this will charge the user's card
@@ -16,6 +17,8 @@ class PaymentsController < ApplicationController
 
 	if charge.paid
 		Order.create(user_id: user, product_id: product, total: @product.price)
+    	@message = "Thank you for your order!"
+    	UserMailer.contact_form(email, User.find(user).first_name, @message).deliver_now
   		redirect_to @product, notice: 'Payment was successful.'
   	else
   		redirect_to @product, alert: 'Payment was unsuccessful.'
