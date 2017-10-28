@@ -3,10 +3,16 @@ require 'rails_helper'
 describe ProductsController, type: :controller do
 	let(:product){ FactoryGirl.create(:product) }
 	let(:user){ FactoryGirl.create(:admin) }
+	let(:product_bad){FactoryGirl.create(:product_bad)}
 
 	context 'GET #index' do
 		it 'renders the index template' do
 			get :index
+			expect(response).to be_ok
+			expect(response).to render_template('index')
+		end
+		it 'renders the searchtemplate' do
+			get :index, params: {q: "test"}
 			expect(response).to be_ok
 			expect(response).to render_template('index')
 		end
@@ -48,10 +54,26 @@ describe ProductsController, type: :controller do
 			sign_in user
 		end 
 		productdetails = FactoryGirl.attributes_for(:product)
+
 		it 'creates a product' do
 			post :create, params: {product:productdetails}
 			expect(response).to redirect_to(Product.last)
 		end
+
+		it "should not update a user based on invalid info" do
+  			assert_raises(ActionController::ParameterMissing) do
+	   		 	badProductDetails = FactoryGirl.attributes_for(:product_bad)
+				post :create, params: {product:badProductDetails}
+ 			end
+		end
+
+		#Not working test
+		#badproduct = FactoryGirl.attributes_for(:product_bad)
+		#it 'Fails to create a product' do
+		#	post :create, params: {product:badproduct}
+		#	expect(response).to render_template :new
+		#end
+
 	end
 
 	context 'Post #Update' do

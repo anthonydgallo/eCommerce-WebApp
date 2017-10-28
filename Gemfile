@@ -46,6 +46,8 @@ gem 'dalli'
 
 gem 'redis-rails'
 
+gem 'simplecov'
+
 group :production do
   gem 'pg'
 end
