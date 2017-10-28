@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Comment do 
-	let(:user){ User.first }
+	let(:user){ FactoryGirl.create(:user) }
 	let(:product){ Product.create!(name: "race bike")}
 
 	it "is not valid without a product" do
