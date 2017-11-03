@@ -3,7 +3,8 @@ require 'rails_helper'
 describe ProductsController, type: :controller do
 	let(:product){ FactoryGirl.create(:product) }
 	let(:user){ FactoryGirl.create(:admin) }
-	let(:product_bad){FactoryGirl.create(:product_bad)}
+	#let(:product_bad){FactoryGirl.create(:product_bad)}
+	let(:product_bad) { FactoryGirl.build(:product, name: 1, price: "two") }
 
 	context 'GET #index' do
 		it 'renders the index template' do
@@ -60,19 +61,12 @@ describe ProductsController, type: :controller do
 			expect(response).to redirect_to(Product.last)
 		end
 
-		it "should not update a user based on invalid info" do
-  			assert_raises(ActionController::ParameterMissing) do
-	   		 	badProductDetails = FactoryGirl.attributes_for(:product_bad)
-				post :create, params: {product:badProductDetails}
- 			end
-		end
+		it 'cannot create a new product with invalid attributes' do
+		  badProductDetails = FactoryGirl.attributes_for(:product_bad)
+          post :create, params: {product:badProductDetails}, format: :json
+          expect(response.status).to eq(422)
+        end
 
-		#Not working test
-		#badproduct = FactoryGirl.attributes_for(:product_bad)
-		#it 'Fails to create a product' do
-		#	post :create, params: {product:badproduct}
-		#	expect(response).to render_template :new
-		#end
 
 	end
 
@@ -87,6 +81,24 @@ describe ProductsController, type: :controller do
 			post :update, params: {id: Product.last.id, product:productdetails} 
 			expect(response).to redirect_to(Product.last)
 		end
+
+		it 'cannot update a product with invalid attributes' do
+		  #Creates test product, then attempts update on that product
+		  #post :create, params: {product:productdetails}
+		  #productdetails = FactoryGirl.attributes_for(:product)
+
+        @badProduct = FactoryGirl.create(:product)
+        @updated_attributes = { :price => "Yes"}
+      	put :update, params:{id: @badProduct.id, product: @updated_attributes}
+      	expect(response).to render_template('edit')
+
+		  #badProductDetails = FactoryGirl.attributes_for(:product_bad)
+    	  #put :update, params: {id: Product.last.id, product:badProductDetails}, format: :json
+     	  
+          #post :update, params: {id: Product.last.id, product:badProductDetails}, format: :json
+          #expect(response).to render_template('edit')
+        end
+
 	end
 
 	context 'Post #Destroy' do
