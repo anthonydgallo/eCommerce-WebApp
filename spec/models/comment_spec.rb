@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Comment do 
 	let(:user){ FactoryGirl.create(:user) }
-	let(:product){ Product.create!(name: "race bike")}
+	let(:product){ Product.create!(name: "race bike",price: 999.99)}
 
 	it "is not valid without a product" do
 		expect(Comment.new(rating: 3, user: user, body: "Awful bike!")).not_to be_valid

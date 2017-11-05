@@ -3,7 +3,6 @@ require 'rails_helper'
 describe ProductsController, type: :controller do
 	let(:product){ FactoryGirl.create(:product) }
 	let(:user){ FactoryGirl.create(:admin) }
-	#let(:product_bad){FactoryGirl.create(:product_bad)}
 	let(:product_bad) { FactoryGirl.build(:product, name: 1, price: "two") }
 
 	context 'GET #index' do
@@ -83,20 +82,10 @@ describe ProductsController, type: :controller do
 		end
 
 		it 'cannot update a product with invalid attributes' do
-		  #Creates test product, then attempts update on that product
-		  #post :create, params: {product:productdetails}
-		  #productdetails = FactoryGirl.attributes_for(:product)
-
-        @badProduct = FactoryGirl.create(:product)
-        @updated_attributes = { :price => "Yes"}
-      	put :update, params:{id: @badProduct.id, product: @updated_attributes}
-      	expect(response).to render_template('edit')
-
-		  #badProductDetails = FactoryGirl.attributes_for(:product_bad)
-    	  #put :update, params: {id: Product.last.id, product:badProductDetails}, format: :json
-     	  
-          #post :update, params: {id: Product.last.id, product:badProductDetails}, format: :json
-          #expect(response).to render_template('edit')
+        	@badProduct = FactoryGirl.create(:product)
+        	@updated_attributes = { :price => "Yes"}
+      		put :update, params:{id: @badProduct.id, product: @updated_attributes}
+      		expect(response).to render_template('edit')	
         end
 
 	end
